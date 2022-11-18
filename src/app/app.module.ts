@@ -7,6 +7,9 @@ import { LoginComponent } from './Pages/login/login.component';
 import { InicioComponent } from './Pages/inicio/inicio.component';
 import { InventarioComponent } from './Pages/inventario/inventario.component';
 
+
+import { FormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,7 +19,8 @@ import { InventarioComponent } from './Pages/inventario/inventario.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
