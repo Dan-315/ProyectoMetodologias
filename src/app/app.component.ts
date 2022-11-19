@@ -7,4 +7,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Metodologias';
+  user=window.sessionStorage.getItem('user');
+
+  logOut(){
+    console.log("HOLLOOOO");
+    
+    window.sessionStorage.removeItem('user');
+    window.localStorage.removeItem('user');
+    window.location.reload();
+  }
 }

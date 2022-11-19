@@ -22,15 +22,25 @@ export class LoginComponent implements OnInit {
 
   async ngOnInit(){
     let usr=window.localStorage.getItem('user');
-    if(usr){
-      window.sessionStorage.setItem('user',usr)
+    let farm=window.localStorage.getItem('farm');
+    if(usr && farm && usr!=null && farm!=null){
+      window.sessionStorage.setItem('user',usr);
+      window.sessionStorage.setItem('farm',farm);
       this.router.navigate(['Inicio'])
     }else{
-      window.sessionStorage.removeItem('user')
+      usr=window.sessionStorage.getItem('user');
+      farm=window.sessionStorage.getItem('farm');
+      if(usr && farm && usr!=null && farm!=null){
+        this.router.navigate(['Inicio'])
+      }else{
+        window.sessionStorage.removeItem('user')
+      }
     }
-    
+    await this.getFarms();
+  }
+
+  async getFarms(){
     await this.farmService.getGranja({}).then((res)=>{
-      console.log(res);
       if(res.status){
         if(res.data.length>0){
           this.granjas=res.data;
@@ -57,10 +67,13 @@ export class LoginComponent implements OnInit {
         console.log(res);
         if(res.status){
           if(res.data.length>0){
-            if(this.remeber)
+            if(this.remeber){
               window.localStorage.setItem('user',JSON.stringify(res.data[0]));
+              window.localStorage.setItem('farm',JSON.stringify(this.getFarm(this.farmId)));
+            }
             window.sessionStorage.setItem('user',JSON.stringify(res.data[0]));
-            this.router.navigate(['Inicio'])
+            window.sessionStorage.setItem('farm',JSON.stringify(this.getFarm(this.farmId)));
+            window.location.reload();
           }else{
             console.log("Usuario y/o contraseña incorrectos");
           }
@@ -71,6 +84,15 @@ export class LoginComponent implements OnInit {
     }else{
       console.log("COMPLETE LOS CAMPOS");
     }
+  }
+
+  getFarm(id:String):Granja|undefined{
+    for(let farm of this.granjas){
+      if(farm.id === id){
+        return farm
+      }
+    }
+    return undefined;
   }
 
 }

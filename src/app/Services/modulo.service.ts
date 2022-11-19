@@ -1,30 +1,30 @@
 import { Injectable } from '@angular/core';
-import { GranjaInput } from '../Interfaces/granja.interface';
 import { ServiceResponse } from '../Interfaces/response.interface'; 
 import { environment } from '../../environments/environment';
 import { UtilService } from './util.service';
 import querys from './http/http.Constants'
 import  axios  from 'axios';
-import { Admin } from '../Interfaces/admin.interface';
+import { Modulo, ModuloInput } from '../Interfaces/modulo.interface';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AdminService {
+export class ModuloService {
+
   host=environment.host||"http://localhost:3000/graphql"
 
   constructor(private utilServ:UtilService) {}
 
-  async getAdmin(admin:GranjaInput){
+  async getModulo(modulo:ModuloInput){
     return await axios.post(this.host, {
-      query: querys.Admin.getAdmin,
-      variables: {admin}
+      query: querys.Modulo.getModulo,
+      variables: {modulo}
     },{
       headers: {
         'Content-Type': 'application/json'
       }
     }).then((res)=>{
-      let data:Admin[]=res.data.data.getAdmin
+      let data:Modulo[]=res.data.data.getModulo
       let respons:ServiceResponse={
         status:true,
         message:"OK",

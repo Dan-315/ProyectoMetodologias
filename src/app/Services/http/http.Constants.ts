@@ -41,9 +41,31 @@ export default {
         idGranja,
         nombre,
         apellido,
-        usuario,
-        password
+        usuario
       }
      }` 
+  }
+  ,Modulo:{
+    getModulo:`query($modulo: ModuloInput){
+      getModulo(modulo: $modulo){
+        id,
+        idGranja,
+        nombre,
+        fechaAdd
+      }
+    }`
+  }
+  ,Inventario:{
+    getInven:`query($inventario: InventarioInput){
+      getInventario(inventario: $inventario){
+        id,
+        idModulo,
+        concepto,
+        minimo,
+        existencias,
+        solicitud,
+        fechaUpdate
+      }
+    }`
   }
 }

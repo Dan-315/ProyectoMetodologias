@@ -1,34 +1,23 @@
 
     <div class="card">
         <div class="card-body">
-          <h4 class="card-title">MDEV</h4>
+          <h4 class="card-title">{{farm.nombre}}</h4>
           <table class="table">
             <thead class="thead-dark">
               <tr>
-                <th>Inventarios</th>
+                <th>#</th>
+                <th>Módulos de la granja</th>
+                <th>Opciones</th>
               </tr>
             </thead>
             <tbody>
-              <tr (click)="selectInventario('Químicos')">
-                <td>Químicos</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-    </div>
-
-    <div class="card">
-        <div class="card-body">
-          <h4 class="card-title">Snt. Juana</h4>
-          <table class="table">
-            <thead class="thead-dark">
-              <tr>
-                <th>Inventarios</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr (click)="selectInventario('Pollos')">
-                <td>Pollos</td>
+              <tr  *ngFor="let mod of modulos; let i = index"  >
+                <td>{{i+1}}</td>
+                <td>{{mod.nombre}}</td>
+                <td>
+                  <button type="button" class="btn btn-outline-success" (click)="selectModulo(mod.id)">Ver Inventario</button>
+                  <button type="button" class="btn btn-outline-danger" (click)="deleteModulo(mod.id)">Eliminar Modulo</button>
+                </td>
               </tr>
             </tbody>
           </table>

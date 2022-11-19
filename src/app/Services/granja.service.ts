@@ -24,7 +24,7 @@ export class GranjaService {
         'Content-Type': 'application/json'
       }
     }).then((res)=>{
-      let data:Granja=res.data.data.getGranja
+      let data:Granja[]=res.data.data.getGranja
       let respons:ServiceResponse={
         status:true,
         message:"OK",

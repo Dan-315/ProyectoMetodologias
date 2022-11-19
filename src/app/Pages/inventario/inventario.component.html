@@ -1,23 +1,30 @@
 <div class="card">
     <div class="card-body">
-      <h4 class="card-title">Snt. Juana</h4>
+      <h4 class="card-title">{{modulo.nombre}}</h4>
       <table class="table">
         <thead class="thead-dark">
           <tr>
-            <th>Inventarios</th>
-            <th>Inventarios</th>
-            <th>Inventarios</th>
+            <th>Concepto</th>
+            <th>Mínimo</th>
+            <th>Existencias</th>
+            <th>Solicitud</th>
+            <th>Fecha Actualización</th>
+            <th><button type="button" class="btn btn-outline-success">+ Añadir Concepto</button></th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Pollos</td>
-          </tr>
-          <tr>
-            <td>Pollos</td>
-          </tr>
-          <tr>
-            <td>Pollos</td>
+          <tr *ngFor="let inv of inventarios">
+            <td>{{inv.concepto}}</td>
+            <td>{{inv.minimo}}</td>
+            <td>{{inv.existencias}}</td>
+            <td>
+              <input type="text" name="" id="" [value]="inv.solicitud">
+            </td>
+            <td>{{inv.fechaUpdate | date:'short'}}</td>
+            <td>
+              <button type="button" class="btn btn-outline-primary">Aplicar</button>
+              <button type="button" class="btn btn-outline-danger">Eliminar</button>
+            </td>
           </tr>
         </tbody>
       </table>
